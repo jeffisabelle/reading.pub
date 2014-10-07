@@ -11,8 +11,8 @@ from utils.readability import make_readable
 app = Flask(__name__)
 assets = Environment(app)
 app.wsgi_app = ProxyFix(app.wsgi_app)
-app.debug = True
-app.secret_key = "secret key"
+app.debug = settings.DEBUG
+app.secret_key = settings.SECRET
 
 js = Bundle(
     'js/jquery-1.8.3.min.js',
