@@ -1,0 +1,28 @@
+<!doctype html>
+
+<html>
+  <head>
+    {% block headtag %}
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}"
+      type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Read With Pleasure</title>
+    {% assets "css_all" %}
+    <link rel="stylesheet" href="{{ ASSET_URL }}" type="text/css" media="screen" />
+    {% endassets %}
+
+    {% endblock %}
+  </head>
+
+  {% block body %}
+
+
+  {% block jsblock %}
+
+  {% assets "js_all" %}
+    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+  {% endassets %}
+
+  {% endblock %} <!-- end of js -->
+  {% endblock %} <!-- end of body -->
+</html>

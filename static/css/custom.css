@@ -1,0 +1,82 @@
+/* line 5, ../sass/custom.scss */
+html, body {
+  /* background-color: #f1f2f7; */
+  /* background-color: #fafafa; */
+  background-color: white;
+  min-height: 100%;
+  height: 100%;
+}
+
+/* line 13, ../sass/custom.scss */
+header {
+  width: 100%;
+  padding-top: 100px;
+  padding-bottom: 20px;
+  background-color: #ef4836;
+}
+/* line 19, ../sass/custom.scss */
+header .container {
+  height: 100%;
+}
+/* line 23, ../sass/custom.scss */
+header .header-inner {
+  height: 100%;
+  padding: 15px;
+}
+/* line 29, ../sass/custom.scss */
+header h1, header h2, header h3, header h4, header h5 {
+  color: #f1f2f7;
+}
+/* line 33, ../sass/custom.scss */
+header p {
+  color: #f1f2f7;
+}
+
+/* line 38, ../sass/custom.scss */
+#content {
+  padding: 50px 15px 50px 15px;
+  font-size: 16px;
+  min-height: 100%;
+  /* font-family: Georgia; */
+  font-weight: 400;
+  font-style: normal;
+  line-height: 25px;
+  color: #333;
+}
+/* line 48, ../sass/custom.scss */
+#content h1 {
+  font-size: 52px;
+  line-height: 60px;
+  margin: 50px 0px 5px 0px;
+  font-weight: 400;
+  font-style: normal;
+}
+/* line 56, ../sass/custom.scss */
+#content h2 {
+  font-size: 36px;
+  line-height: 46px;
+  margin: 50px 0px 5px 0px;
+}
+/* line 63, ../sass/custom.scss */
+#content p {
+  margin: 0px 0px 25px 0px;
+  text-transform: inherit;
+  font-size: 16px;
+}
+/* line 68, ../sass/custom.scss */
+#content p img {
+  max-width: 100%;
+}
+/* line 73, ../sass/custom.scss */
+#content ul {
+  margin: 10px 20px;
+  padding: 10px 20px;
+}
+/* line 77, ../sass/custom.scss */
+#content ul li {
+  list-style: disc;
+}
+/* line 82, ../sass/custom.scss */
+#content strong {
+  margin-top: 30px;
+}

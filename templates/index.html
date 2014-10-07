@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block headtag %}
+  {{ super() }}
+{% endblock %}
+
+{% block body %}
+
+ <header>
+   <div class="container">
+     <div class="header-inner">
+
+       <div class="col-xs-6">
+         <h2>reading.pub</h2>
+         <p>read with pleasure</p>
+       </div>
+     </div> <!-- end of header-inner -->
+   </div>
+ </header>
+ <div class="container">
+   <div class="col-xs-6">
+
+     <div class="panel">
+       <div class="panel-body">
+
+         <form role="form" action="/parsed" method="POST">
+           <div class="form-group">
+             <label for="urlInput">Paste URL Below</label>
+             <input type="text" name="url" placeholder="Paste URL you want to read"
+                    id="urlInput" class="form-control">
+           </div>
+
+           <button class="btn btn-danger" type="submit">Read with Pleasure</button>
+         </form>
+         <hr />
+         <h4>OR</h4>
+         <hr />
+
+         <p>Drag the following button to your bookmarks, clicking it
+         will trigger reading.pub parser automatically</p>
+
+         <a class="btn btn-danger" href="javascript:var%20win=window.open('http://reading.pub/submit?url='+encodeURIComponent(location.href),%20'_blank');%20win.focus();">reading.pub</a>
+
+       </div> <!-- panel-body -->
+     </div>   <!-- panel -->
+
+   </div>
+ </div>
+
+{% block jsblock %}
+  {{ super() }}
+{% endblock %} <!-- end of jsblock -->
+{% endblock %} <!-- end of body block -->
