@@ -1,4 +1,12 @@
-$primary-color: #EF4836;
+$light-white: #fafafa;
+$white: #eaeaea;
+$black: #444;
+$soft-black: #797979;
+
+$primary-color: #654BAC;              /* purplish */
+$primary-color-alt: #4B3A79;          /* darkish purplish */
+/* $primary-color: #252B33; */        /* angelspeaker color */
+/* $primary-color: #EF4836; */        /* muhammetcan.net color */
 $secondary-color: #96281B;
 $bg-color: #fff;
 
@@ -15,6 +23,7 @@ header {
     padding-top: 100px;
     padding-bottom: 20px;
     background-color: $primary-color;
+    border-top: 6px solid $primary-color-alt;
 
     .container {
         height: 100%;
@@ -34,6 +43,20 @@ header {
         color: #f1f2f7;
     }
 }
+
+footer {
+    width: 100%;
+    height: 60px;
+    background-color: $primary-color;
+    border-bottom: 4px solid $primary-color-alt;
+
+    .text-center {
+        line-height: 60px;
+        text-align: center;
+        color: $bg-color;
+    }
+}
+
 
 #content {
     padding: 50px 15px 50px 15px;
@@ -81,5 +104,95 @@ header {
 
     strong {
         margin-top: 30px;
+    }
+}
+
+.btn {
+    /* icons inside buttos */
+    i {
+        &.fa {
+            margin: auto 7px auto auto;
+        }
+    }
+
+
+    /* primary color btn */
+    &.btn-special {
+        background-color: $primary-color;
+        color: $white;
+        border: 1px solid $white;
+        transition: all ease 0.3s;
+
+        &.btn-modal {
+            width: 100%;
+            margin: 10px auto;
+
+        }
+
+        &:hover {
+            background-color: $bg-color;
+            border: 1px solid $primary-color;
+            color: $black;
+        }
+    }
+}
+
+
+/* footer */
+.page-wrap {
+  min-height: 100%;
+  margin-bottom: -60px;
+}
+
+.page-wrap:after {
+  content: "";
+  display: block;
+}
+
+.page-wrap:after {
+  /* .push must be the same height as footer */
+  height: 60px;
+}
+
+
+.panel {
+    margin: 30px auto;
+
+    h3 {
+        font-variant: small-caps;
+        margin-bottom: 0;
+    }
+}
+/* end of footer */
+
+
+
+/* modals */
+.modal-dialog {
+    width: 400px;
+
+    .form-signin {
+        margin: auto;
+    }
+
+    .modal-header {
+        background-color: $primary-color;
+    }
+}
+/* end of modals */
+
+
+/* generics */
+.tcenter {
+    text-align: center;
+    margin: auto;
+}
+
+ul {
+    li {
+        font-size: 1.2em;
+        line-height: 1.6em;
+        margin-left: 20px;
+        list-style: square;
     }
 }
