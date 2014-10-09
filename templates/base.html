@@ -6,21 +6,142 @@
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}"
       type="image/x-icon" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Read With Pleasure</title>
+    <title>reading.pub :: read with pleasure</title>
     {% assets "css_all" %}
     <link rel="stylesheet" href="{{ ASSET_URL }}" type="text/css" media="screen" />
+    <!--external css-->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
+      rel="stylesheet">
     {% endassets %}
 
     {% endblock %}
   </head>
 
+  <!-- login modal -->
+  <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog"
+       tabindex="-1" id="loginModal" class="modal fade" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+          <h4 class="modal-title">Login</h4>
+        </div>
+        <div class="modal-body">
+          <!-- login form starts here -->
+          <form class="form-signin">
+
+            <div class="login-wrap">
+              <input id="usernamelogin" type="text" autofocus=""
+                     placeholder="Username" class="form-control">
+              <input id="passwordlogin" type="password" placeholder="Password" class="form-control">
+              <label class="checkbox">
+                <input type="checkbox" id="rememberme"
+                value="remember-me" checked>Remember Me
+                <span class="pull-right">
+                  <a href="javascript:void(0);">Forgot Password?</a>
+
+                </span>
+              </label>
+              <div class="tcenter">
+                <a href="javascript:void(0)" onclick="login();" class="btn btn-special
+                btn-modal"><i class="fa fa-sign-in"></i> Login Now</a>
+              </div>
+              <div class="registration">
+                Don't have an account?
+                <a href="#registerModal" class="" data-toggle="modal">
+                  Register Now!
+                </a>
+              </div>
+            </div>
+
+
+            <div id="errordata" class="alert alert-block alert-danger fade in">
+              <button type="button" class="close close-sm" data-dismiss="alert">
+                <i class="fa fa-times"></i>
+              </button>
+              <strong>Error!</strong> Couldn't Login <br />
+              <span id="errorlogin"></span>
+            </div>
+
+
+          </form>
+          <!-- login form ends here -->
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- end of login modal -->
+
+
+  <!-- register modal -->
+  <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog"
+       tabindex="-1" id="registerModal" class="modal fade" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+          <h4 class="modal-title">Register</h4>
+        </div>
+        <div class="modal-body">
+          <!-- login form starts here -->
+          <form class="form-signin">
+
+            <div class="login-wrap">
+              <input id="usernameregister" type="text" autofocus=""
+                     placeholder="Username" class="form-control">
+              <input id="emailregister" type="text" autofocus=""
+                     placeholder="E-Mail" class="form-control">
+              <input id="passwordregister" type="password"
+                     placeholder="Password" class="form-control">
+
+              <div class="tcenter">
+                <a href="javascript:void(0)" onclick="register();" class="btn btn-special
+                btn-modal"><i class="fa fa-user"></i> Register Now</a>
+              </div>
+              <div class="registration">
+                Already registered?
+                <a href="#loginModal" class="" data-toggle="modal">
+                  Login Now!
+                </a>
+              </div>
+            </div>
+
+
+            <div id="errordataregister" class="alert alert-block alert-danger fade in">
+              <button type="button" class="close close-sm" data-dismiss="alert">
+                <i class="fa fa-times"></i>
+              </button>
+              <strong>Error!</strong> Couldn't Register <br />
+              <span id="errorregister"></span>
+            </div>
+
+          </form>
+          <!-- login form ends here -->
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- end of register modal -->
   {% block body %}
 
+
+
+
+  {% block footer %}
+  <footer>
+    <div class="text-center">
+      made with <i class="fa fa-heart-o"></i> in ankara
+    </div>
+  </footer>
+  {% endblock %} <!-- end of footer -->
 
   {% block jsblock %}
 
   {% assets "js_all" %}
     <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/readingpub.js')}}"></script>
   {% endassets %}
 
   {% endblock %} <!-- end of js -->

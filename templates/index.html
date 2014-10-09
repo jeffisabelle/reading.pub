@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block body %}
+<div class="page-wrap">
 
  <header>
    <div class="container">
@@ -18,34 +19,85 @@
    </div>
  </header>
  <div class="container">
-   <div class="col-xs-6">
-
+   <div class="col-xs-5">
      <div class="panel">
-       <div class="panel-body">
+       <div class="panel-heading">
+         <h3>try reading.pub</h3>
+       </div>
 
+       <div class="panel-body">
          <form role="form" action="/parsed" method="POST">
            <div class="form-group">
              <label for="urlInput">Paste URL Below</label>
-             <input type="text" name="url" placeholder="Paste URL you want to read"
+             <input type="text" name="url" placeholder="Paste URL here"
                     id="urlInput" class="form-control">
            </div>
 
-           <button class="btn btn-danger" type="submit">Read with Pleasure</button>
+           <button class="btn btn-special" type="submit">
+             <i class="fa fa-send"></i> Read with Pleasure
+           </button>
          </form>
          <hr />
-         <h4>OR</h4>
+         <h3>or</h3>
          <hr />
+
 
          <p>Drag the following button to your bookmarks, clicking it
          will trigger reading.pub parser automatically</p>
 
-         <a class="btn btn-danger" href="javascript:var%20win=window.open('http://reading.pub/submit?url='+encodeURIComponent(location.href),%20'_blank');%20win.focus();">reading.pub</a>
+         <a class="btn btn-special"
+         href="javascript:var%20win=window.open('http://reading.pub/submit?url='+encodeURIComponent(location.href),%20'_blank');%20win.focus();">
+         <i class="fa fa-book"></i> reading.pub</a>
 
        </div> <!-- panel-body -->
      </div>   <!-- panel -->
+   </div>     <!-- end of col-xs-6 -->
 
+   <div class="col-xs-5 col-xs-offset-2">
+     <div class="panel">
+       <div class="panel-heading">
+         {% if user %}
+         <h3>your articles</h3>
+         {% else %}
+         <h3>register to get more</h3>
+         {% endif %}
+       </div>
+       <div class="panel-body">
+         {% if user %}
+         Helle There {{ user.username }}! <br />
+         Save some articles to see them in your profile! <br />
+         <hr />
+         <a href="/logout">Logout</a>
+         {% else %}
+         <ul>
+           <li>save articles for reading later</li>
+           <li>highlight important parts</li>
+           <li>take notes around paragraphs</li>
+           <li>reading.pub is and always will be free</li>
+         </ul>
+         <hr />
+
+         <a href="#loginModal" data-toggle="modal"
+            class="btn btn-special">
+           <i class="fa fa-sign-in"></i> Login
+         </a>
+
+         <a href="#registerModal" data-toggle="modal"
+            class="btn btn-special">
+           <i class="fa fa-users"></i> Register
+         </a>
+         {% endif %}
+       </div>
+     </div>
    </div>
- </div>
+
+ </div> <!-- end of container -->
+
+</div> <!-- end of page-wrap -->
+{% block footer %}
+  {{ super() }}
+{% endblock %}
+
 
 {% block jsblock %}
   {{ super() }}

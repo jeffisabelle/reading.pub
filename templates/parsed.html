@@ -21,10 +21,29 @@
    <div class="col-xs-12 col-md-10 col-lg-7">
 
      <div id="content">
+       <a href="#loginModal" data-toggle="modal"
+          class="btn btn-special">
+         <i class="fa fa-save"></i> Read Later
+       </a>
+
+       <a class="btn btn-special" type="submit">
+         <i class="fa fa-tag"></i> Menage Tags
+       </a>
+
+       <a class="btn btn-special" type="submit">
+         <i class="fa fa-gears"></i> Reading Options
+       </a>
+       <hr />
+
        {{data.content | safe}}
      </div>
    </div>
  </div>
+
+{% block footer %}
+  {{ super() }}
+{% endblock %}
+
 
 {% block jsblock %}
   {{ super() }}
