@@ -141,7 +141,9 @@
 
   {% assets "js_all" %}
     <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/pleasejs/0.2.0/Please.min.js"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/readingpub.js')}}"></script>
+
   {% endassets %}
 
   {% endblock %} <!-- end of js -->

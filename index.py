@@ -12,7 +12,8 @@ from datetime import datetime
 
 from utils import userutils
 from utils.readability import make_readable
-from models.models import User
+from utils.pyscrape.soup import LinkScrapper
+from models.models import User, Post
 
 
 app = Flask(__name__)
@@ -27,7 +28,7 @@ js = Bundle(
     'js/respond.min.js', 'js/bootstrap.min.js',
     'js/hover-dropdown.js', 'js/jquery.customSelect.min.js',
     'js/jquery.ui.touch-punch.min.js', 'js/sliders.js',
-    'js/common-scripts.js',
+    'js/common-scripts.js', 'js/jquery.timeago.js',
     filters='jsmin', output='gen/packed.js'
 )
 
@@ -53,31 +54,40 @@ def load_user(username):
 @app.route('/')
 def index():
     if current_user.is_authenticated():
-        user = current_user
+        return redirect("/user/profile")
     else:
-        user = None
-
-    return render_template('index.html', user=user)
+        return render_template('index.html')
 
 
 @app.route('/parsed', methods=["POST"])
 def parse():
     url = request.form.get("url")
     json_data = make_readable(url)
-    return render_template('parsed.html', data=json_data)
+
+    if current_user.is_authenticated():
+        return render_template(
+            'parsed.html', data=json_data, user=current_user
+        )
+    else:
+        return render_template(
+            'parsed.html', data=json_data
+        )
 
 
 @app.route('/submit', methods=["GET"])
 def submit():
     url = request.args.get("url")
     json_data = make_readable(url)
-    return render_template('parsed.html', data=json_data)
+    if current_user.is_authenticated():
+        return render_template(
+            'parsed.html', data=json_data, user=current_user
+        )
+    else:
+        return render_template(
+            'parsed.html', data=json_data
+        )
 
 
-@login_required
-@app.route("/user/profile")
-def profile():
-    return render_template('profile.html', user=current_user)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -188,22 +198,45 @@ def logout():
     return redirect("/")
 
 
-# @app.route("/user/register", methods=["POST"])
-# def register_function():
-#     post_data = request.form
-#     username = post_data["username"]
-#     email = post_data["email"]
-#     password = post_data["password"]
+@login_required
+@app.route("/user/profile")
+def profile():
+    user = User.objects(username=current_user.username).first()
+    posts = Post.objects(author=user).order_by("-saved_date")
+    return render_template('profile.html', user=user, posts=posts)
 
-#     user = User(username=username, email=email)
-#     user.password = userutils.encrypt(password)
-#     user.slug = userutils.make_slug(username)
-#     user.register_date = datetime.now()
-#     user.user_type = "user"
 
-#     user.save()
-#     login_user(user)
-#     return redirect('/user/profile')
+@app.route("/post/scrape", methods=["POST"])
+@login_required
+def scrape_link():
+    post_data = json.loads(request.data)
+    ls = LinkScrapper(post_data["url"])
+    data = ls.scrape()
+    data["now"] = unicode(datetime.now())
+
+    return json.dumps(data)
+
+
+@app.route("/post/save", methods=["POST"])
+@login_required
+def save_post():
+    post_data = json.loads(request.data)
+    url = post_data["url"]
+    json_data = make_readable(url)
+
+    title = post_data["title"]
+    slug = userutils.make_slug(title)
+    author = User.objects(username=current_user.username).first()
+
+    p = Post(title=title, slug=slug)
+    p.saved_date = datetime.now()
+    p.thumbnail = post_data["thumbnail"]
+    p.url = url
+    p.author = author
+    p.content = json_data["content"]
+    p.domain = post_data["domain"]
+    p.save()
+    return "ok"
 
 
 if __name__ == '__main__':

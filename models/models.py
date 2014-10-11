@@ -9,6 +9,7 @@ class User(Document):
     email = EmailField(required=True, unique=True, max_length=200)
     password = StringField(required=True, max_length=100)
     register_date = DateTimeField()
+    posts = ListField(EmbeddedDocumentField("Post"))
 
     def is_authenticated(self):
         return True
@@ -24,3 +25,16 @@ class User(Document):
 
     def __str__(self):
         return self.username
+
+
+class Post(Document):
+    title = StringField()
+    slug = StringField()
+    saved_date = DateTimeField()
+    thumbnail = StringField()
+    author = ReferenceField(User)
+    seq = SequenceField()
+    short = StringField()
+    url = StringField()
+    domain = StringField()
+    content = StringField()
