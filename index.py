@@ -199,11 +199,19 @@ def logout():
 
 
 @login_required
-@app.route("/user/profile")
+@app.route("/user/profile/")
 def profile():
     user = User.objects(username=current_user.username).first()
     posts = Post.objects(author=user).order_by("-saved_date")
     return render_template('profile.html', user=user, posts=posts)
+
+
+@app.route("/<string:seq>/<string:slug>/")
+def single_post(seq, slug):
+    seq = int(seq)
+    post = Post.objects(seq=seq).first()
+    print post
+    return render_template('single.html', user=current_user, post=post)
 
 
 @app.route("/post/scrape", methods=["POST"])

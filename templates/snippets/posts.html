@@ -12,7 +12,7 @@
     {% endif %}
 
     <div class="title">
-      {{post.title | truncate(70)}}
+      <a href="/{{post.seq}}/{{post.slug}}">{{post.title | truncate(70)}}</a>
     </div>
 
     <div class="time">
