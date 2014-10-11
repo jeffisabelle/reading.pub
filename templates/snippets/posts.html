@@ -1,0 +1,29 @@
+<div class="col-xs-4">
+  <div class="post">
+    {% if post.thumbnail %}
+    <div class="thumbnail"
+         style="background: url({{post.thumbnail}})
+                no-repeat scroll 50% 50% / cover transparent;">
+    </div>
+    {% else %}
+    <div class="thumbnail">
+      <div class="please"></div>
+    </div>
+    {% endif %}
+
+    <div class="title">
+      {{post.title | truncate(70)}}
+    </div>
+
+    <div class="time">
+      saved <time class="timeago" datetime="{{post.saved_date}}"></time>
+    </div>
+
+
+    <div class="domain">
+      ({{post.domain}})
+    </div>
+
+
+  </div> <!-- end of post -->
+</div>

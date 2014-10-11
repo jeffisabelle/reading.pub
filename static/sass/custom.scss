@@ -18,7 +18,7 @@ html, body {
     height: 100%;
 }
 
-header {
+header.rp {
     width: 100%;
     padding-top: 100px;
     padding-bottom: 20px;
@@ -47,6 +47,7 @@ header {
 footer {
     width: 100%;
     height: 60px;
+    margin-top: 50px;
     background-color: $primary-color;
     border-bottom: 4px solid $primary-color-alt;
 
@@ -87,10 +88,6 @@ footer {
         margin: 0px 0px 25px 0px;
         text-transform: inherit;
         font-size: 16px;
-
-        img {
-            max-width: 100%;
-        }
     }
 
     ul {
@@ -105,34 +102,62 @@ footer {
     strong {
         margin-top: 30px;
     }
+
+    img {
+        max-width: 100%;
+        margin: 20px auto;
+        display: block;
+    }
 }
 
-.btn {
-    /* icons inside buttos */
-    i {
-        &.fa {
-            margin: auto 7px auto auto;
-        }
-    }
+.posts {
+    margin: 40px auto;
+
+    .post {
+        /* background-color: lighten($primary-color, 50%); */
+	-webkit-box-shadow: 0 8px 10px -6px #ddd;
+	-moz-box-shadow: 0 8px 10px -6px #ddd;
+	box-shadow: 0 8px 10px -6px #ddd;
+        /* padding: 10px; */
+        height: 350px;
+        margin: 15px auto;
+        position: relative;
 
 
-    /* primary color btn */
-    &.btn-special {
-        background-color: $primary-color;
-        color: $white;
-        border: 1px solid $white;
-        transition: all ease 0.3s;
-
-        &.btn-modal {
+        .thumbnail {
             width: 100%;
-            margin: 10px auto;
+            height: 200px;
+            border: none;
+            border-radius: 0;
+            padding: 0;
 
+            .please {
+                background-color: #aaa;
+                width: 100%;
+                height: 100%;
+            }
         }
 
-        &:hover {
-            background-color: $bg-color;
-            border: 1px solid $primary-color;
+        .title {
+            color: $primary-color;
+            font-weight: 600;
+            padding: 0 10px;
+        }
+
+        .time {
+            padding: 0 10px;
+        }
+
+        .domain {
             color: $black;
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            right: 10px;
+            display: block;
+            padding-top: 10px;
+            color: $primary-color;
+            /* border-top: 1px solid lighten($primary-color, 30%); */
         }
     }
 }
@@ -196,3 +221,39 @@ ul {
         list-style: square;
     }
 }
+
+.btn {
+    /* icons inside buttos */
+    i {
+        &.fa {
+            margin: auto 7px auto auto;
+        }
+    }
+
+
+    /* primary color btn */
+    &.btn-special {
+        background-color: $primary-color;
+        color: $white;
+        border: 1px solid $white;
+        transition: all ease 0.3s;
+        outline: 0;
+
+        &.btn-modal {
+            width: 100%;
+            margin: 10px auto;
+
+        }
+
+        &:hover {
+            background-color: $bg-color;
+            border: 1px solid $primary-color;
+            color: $black;
+        }
+
+        &:active {
+            border: 1px solid $primary-color;
+        }
+    }
+}
+/* end of generics */

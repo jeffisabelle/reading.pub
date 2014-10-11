@@ -1,7 +1,19 @@
 $(document).ready(function() {
     $("#errordata").hide();
     $("#errordataregister").hide();
+    $("time.timeago").timeago();
+
+
+    $(".please").each(function(index) {
+        // random color for no-thumbs
+        var color = Please.make_color({
+	    base_color: 'rebeccapurple' //set your base color
+        });
+        $(this).css("background-color", color);
+    });
+
 });
+
 
 
 // used on base
