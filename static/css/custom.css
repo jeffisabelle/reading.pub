@@ -43,7 +43,7 @@ header.rp p {
 footer {
   width: 100%;
   height: 60px;
-  margin-top: 50px;
+  /* margin-top: 50px; */
   background-color: #654bac;
   border-bottom: 4px solid #4b3a79;
 }
@@ -54,9 +54,58 @@ footer .text-center {
   color: white;
 }
 
-/* line 62, ../sass/custom.scss */
+/* line 61, ../sass/custom.scss */
+#navigation {
+  /* padding: 30px 0; */
+  /* background-color: $light-white; */
+  border-bottom: 1px solid #fafafa;
+}
+/* line 66, ../sass/custom.scss */
+#navigation .navigationWrapper {
+  /* .btn { */
+  /*     &.btn-special { */
+  /*         background-color: $primary-color-alt; */
+  /*         &:hover { */
+  /*             background-color: $white; */
+  /*         } */
+  /*     } */
+  /* } */
+}
+/* line 68, ../sass/custom.scss */
+#navigation .navigationWrapper .navbutton {
+  display: table;
+  float: left;
+  background-color: #fff;
+  border-bottom: 3px solid #fff;
+  font-variant: small-caps;
+  font-weight: 500;
+  color: #797979;
+  padding: 18px 15px 15px 15px;
+  transition: all .3s ease;
+}
+/* line 79, ../sass/custom.scss */
+#navigation .navigationWrapper .navbutton i {
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 1.5em;
+  padding: 5px;
+}
+/* line 86, ../sass/custom.scss */
+#navigation .navigationWrapper .navbutton span {
+  display: table-cell;
+  vertical-align: middle;
+  margin-bottom: 2px;
+}
+/* line 92, ../sass/custom.scss */
+#navigation .navigationWrapper .navbutton:hover {
+  background-color: #fafafa;
+  border-bottom: 3px solid #4b3a79;
+  color: #444444;
+}
+
+/* line 111, ../sass/custom.scss */
 #content {
-  padding: 50px 15px 50px 15px;
+  padding: 0 15px;
   font-size: 16px;
   min-height: 100%;
   /* font-family: Georgia; */
@@ -65,7 +114,7 @@ footer .text-center {
   line-height: 25px;
   color: #333;
 }
-/* line 72, ../sass/custom.scss */
+/* line 121, ../sass/custom.scss */
 #content h1 {
   font-size: 52px;
   line-height: 60px;
@@ -73,43 +122,44 @@ footer .text-center {
   font-weight: 400;
   font-style: normal;
 }
-/* line 80, ../sass/custom.scss */
+/* line 129, ../sass/custom.scss */
 #content h2 {
   font-size: 36px;
   line-height: 46px;
   margin: 50px 0px 5px 0px;
 }
-/* line 87, ../sass/custom.scss */
+/* line 136, ../sass/custom.scss */
 #content p {
   margin: 0px 0px 25px 0px;
   text-transform: inherit;
   font-size: 16px;
 }
-/* line 93, ../sass/custom.scss */
+/* line 142, ../sass/custom.scss */
 #content ul {
   margin: 10px 20px;
   padding: 10px 20px;
 }
-/* line 97, ../sass/custom.scss */
+/* line 146, ../sass/custom.scss */
 #content ul li {
   list-style: disc;
 }
-/* line 102, ../sass/custom.scss */
+/* line 151, ../sass/custom.scss */
 #content strong {
   margin-top: 30px;
 }
-/* line 106, ../sass/custom.scss */
+/* line 155, ../sass/custom.scss */
 #content img {
   max-width: 100%;
   margin: 20px auto;
   display: block;
 }
 
-/* line 113, ../sass/custom.scss */
+/* line 162, ../sass/custom.scss */
 .posts {
-  margin: 40px auto;
+  float: left;
+  margin: 20px auto;
 }
-/* line 116, ../sass/custom.scss */
+/* line 166, ../sass/custom.scss */
 .posts .post {
   /* background-color: lighten($primary-color, 50%); */
   -webkit-box-shadow: 0 8px 10px -6px #ddd;
@@ -120,7 +170,7 @@ footer .text-center {
   margin: 15px auto;
   position: relative;
 }
-/* line 127, ../sass/custom.scss */
+/* line 177, ../sass/custom.scss */
 .posts .post .thumbnail {
   width: 100%;
   height: 200px;
@@ -128,23 +178,31 @@ footer .text-center {
   border-radius: 0;
   padding: 0;
 }
-/* line 134, ../sass/custom.scss */
+/* line 184, ../sass/custom.scss */
 .posts .post .thumbnail .please {
   background-color: #aaa;
   width: 100%;
   height: 100%;
 }
-/* line 141, ../sass/custom.scss */
+/* line 191, ../sass/custom.scss */
 .posts .post .title {
-  color: #654bac;
-  font-weight: 600;
   padding: 0 10px;
+  font-weight: 600;
 }
-/* line 147, ../sass/custom.scss */
+/* line 194, ../sass/custom.scss */
+.posts .post .title a {
+  color: #444444;
+  transition: all 0.3s ease;
+}
+/* line 198, ../sass/custom.scss */
+.posts .post .title a:hover {
+  color: #654bac;
+}
+/* line 204, ../sass/custom.scss */
 .posts .post .time {
   padding: 0 10px;
 }
-/* line 151, ../sass/custom.scss */
+/* line 208, ../sass/custom.scss */
 .posts .post .domain {
   color: #444444;
   position: absolute;
@@ -153,34 +211,33 @@ footer .text-center {
   right: 10px;
   display: block;
   padding-top: 10px;
-  color: #654bac;
   /* border-top: 1px solid lighten($primary-color, 30%); */
 }
 
 /* footer */
-/* line 167, ../sass/custom.scss */
+/* line 223, ../sass/custom.scss */
 .page-wrap {
   min-height: 100%;
   margin-bottom: -60px;
 }
 
-/* line 172, ../sass/custom.scss */
+/* line 228, ../sass/custom.scss */
 .page-wrap:after {
   content: "";
   display: block;
 }
 
-/* line 177, ../sass/custom.scss */
+/* line 233, ../sass/custom.scss */
 .page-wrap:after {
   /* .push must be the same height as footer */
   height: 60px;
 }
 
-/* line 183, ../sass/custom.scss */
+/* line 239, ../sass/custom.scss */
 .panel {
   margin: 30px auto;
 }
-/* line 186, ../sass/custom.scss */
+/* line 242, ../sass/custom.scss */
 .panel h3 {
   font-variant: small-caps;
   margin-bottom: 0;
@@ -188,28 +245,28 @@ footer .text-center {
 
 /* end of footer */
 /* modals */
-/* line 196, ../sass/custom.scss */
+/* line 252, ../sass/custom.scss */
 .modal-dialog {
   width: 400px;
 }
-/* line 199, ../sass/custom.scss */
+/* line 255, ../sass/custom.scss */
 .modal-dialog .form-signin {
   margin: auto;
 }
-/* line 203, ../sass/custom.scss */
+/* line 259, ../sass/custom.scss */
 .modal-dialog .modal-header {
   background-color: #654bac;
 }
 
 /* end of modals */
 /* generics */
-/* line 211, ../sass/custom.scss */
+/* line 267, ../sass/custom.scss */
 .tcenter {
   text-align: center;
   margin: auto;
 }
 
-/* line 217, ../sass/custom.scss */
+/* line 273, ../sass/custom.scss */
 ul li {
   font-size: 1.2em;
   line-height: 1.6em;
@@ -217,16 +274,16 @@ ul li {
   list-style: square;
 }
 
-/* line 225, ../sass/custom.scss */
+/* line 281, ../sass/custom.scss */
 .btn {
   /* icons inside buttos */
   /* primary color btn */
 }
-/* line 228, ../sass/custom.scss */
+/* line 284, ../sass/custom.scss */
 .btn i.fa {
   margin: auto 7px auto auto;
 }
-/* line 235, ../sass/custom.scss */
+/* line 291, ../sass/custom.scss */
 .btn.btn-special {
   background-color: #654bac;
   color: #eaeaea;
@@ -234,18 +291,18 @@ ul li {
   transition: all ease 0.3s;
   outline: 0;
 }
-/* line 242, ../sass/custom.scss */
+/* line 298, ../sass/custom.scss */
 .btn.btn-special.btn-modal {
   width: 100%;
   margin: 10px auto;
 }
-/* line 248, ../sass/custom.scss */
+/* line 304, ../sass/custom.scss */
 .btn.btn-special:hover {
   background-color: white;
   border: 1px solid #654bac;
   color: #444444;
 }
-/* line 254, ../sass/custom.scss */
+/* line 310, ../sass/custom.scss */
 .btn.btn-special:active {
   border: 1px solid #654bac;
 }
