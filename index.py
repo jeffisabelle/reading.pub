@@ -51,43 +51,35 @@ def load_user(username):
     return User.objects(username=username).first()
 
 
+def get_user():
+    if current_user.is_authenticated():
+        user = User.objects(username=current_user.username).first()
+        return user
+    else:
+        return None
+
+
 @app.route('/')
 def index():
-    if current_user.is_authenticated():
-        return redirect("/user/profile")
-    else:
-        return render_template('index.html')
+    user = get_user()
+    recent = Post.objects(author=user).order_by("-saved_date")
+    return render_template("index.html", user=user, recent=recent)
 
 
 @app.route('/parsed', methods=["POST"])
 def parse():
     url = request.form.get("url")
     json_data = make_readable(url)
-
-    if current_user.is_authenticated():
-        return render_template(
-            'parsed.html', data=json_data, user=current_user
-        )
-    else:
-        return render_template(
-            'parsed.html', data=json_data
-        )
+    user = get_user()
+    return render_template('parsed.html', data=json_data, user=user)
 
 
 @app.route('/submit', methods=["GET"])
 def submit():
     url = request.args.get("url")
     json_data = make_readable(url)
-    if current_user.is_authenticated():
-        return render_template(
-            'parsed.html', data=json_data, user=current_user
-        )
-    else:
-        return render_template(
-            'parsed.html', data=json_data
-        )
-
-
+    user = get_user()
+    return render_template('parsed.html', data=json_data, user=user)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -201,7 +193,7 @@ def logout():
 @login_required
 @app.route("/user/profile/")
 def profile():
-    user = User.objects(username=current_user.username).first()
+    user = get_user()
     posts = Post.objects(author=user).order_by("-saved_date")
     return render_template('profile.html', user=user, posts=posts)
 
@@ -209,9 +201,9 @@ def profile():
 @app.route("/<string:seq>/<string:slug>/")
 def single_post(seq, slug):
     seq = int(seq)
+    user = get_user()
     post = Post.objects(seq=seq).first()
-    print post
-    return render_template('single.html', user=current_user, post=post)
+    return render_template('single.html', user=user, post=post)
 
 
 @app.route("/post/scrape", methods=["POST"])
@@ -242,6 +234,7 @@ def save_post():
     p.url = url
     p.author = author
     p.content = json_data["content"]
+    p.excerpt = json_data["excerpt"]
     p.domain = post_data["domain"]
     p.save()
     return "ok"

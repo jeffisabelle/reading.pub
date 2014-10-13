@@ -38,3 +38,4 @@ class Post(Document):
     url = StringField()
     domain = StringField()
     content = StringField()
+    excerpt = StringField()

@@ -18,30 +18,16 @@
      </div> <!-- end of header-inner -->
    </div>
  </header>
+
+ <div id="navigation">
+   <div class="container">
+     <div class="col-xs-12">
+       {% include "snippets/navigation.html" %}
+     </div>
+   </div>
+ </div>
+
  <div class="container">
-   <div class="insert">
-     <div class="panel">
-       <div class="panel-heading">
-         <h3>read new document</h3>
-       </div>
-
-       <div class="panel-body">
-         <form role="form" action="/parsed" method="POST">
-           <div class="form-group">
-             <label for="urlInput">Paste URL Below</label>
-             <input type="text" name="url" placeholder="Paste URL here"
-                    id="urlInput" class="form-control">
-           </div>
-
-           <button class="btn btn-special" type="submit">
-             <i class="fa fa-send"></i> Read with Pleasure
-           </button>
-         </form>
-       </div> <!-- panel-body -->
-     </div>   <!-- panel -->
-
-   </div> <!-- end of insert -->
-
    <div class="posts">
    {% for post in posts %}
      {% include "snippets/posts.html" %}

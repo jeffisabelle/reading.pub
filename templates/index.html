@@ -18,6 +18,16 @@
      </div> <!-- end of header-inner -->
    </div>
  </header>
+
+ <div id="navigation">
+   <div class="container">
+     <div class="col-xs-12">
+       {% include "snippets/navigation.html" %}
+     </div>
+   </div>
+ </div>
+
+
  <div class="container">
    <div class="col-xs-5">
      <div class="panel">
@@ -66,8 +76,6 @@
          {% if user %}
          Helle There {{ user.username }}! <br />
          Save some articles to see them in your profile! <br />
-         <hr />
-         <a href="/logout">Logout</a>
          {% else %}
          <ul>
            <li>save articles for reading later</li>
@@ -75,7 +83,6 @@
            <li>take notes around paragraphs</li>
            <li>reading.pub is and always will be free</li>
          </ul>
-         <hr />
 
          <a href="#loginModal" data-toggle="modal"
             class="btn btn-special">
@@ -88,6 +95,8 @@
          </a>
          {% endif %}
        </div>
+       <hr />
+
      </div>
    </div>
 

@@ -124,6 +124,41 @@
     </div>
   </div>
   <!-- end of register modal -->
+
+
+  <!-- newdocument modal -->
+  <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog"
+       tabindex="-1" id="newdocumentModal" class="modal fade" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+          <h4 class="modal-title">Parse New Document</h4>
+        </div>
+        <div class="modal-body">
+          <!-- login form starts here -->
+
+          <form role="form" action="/parsed" method="POST" class="form-signin">
+            <div class="login-wrap">
+              <input id="urlInput" name="url" type="text" autofocus=""
+                     placeholder="Paste Url Here" class="form-control">
+              <div class="tcenter">
+                <button class="btn btn-special btn-modal" type="submit">
+                  <i class="fa fa-send"></i> Read with Pleasure
+                </button>
+              </div>
+            </div> <!-- end of login-wrap -->
+
+
+          </form>
+          <!-- newdocument form ends here -->
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- end of newdocument modal -->
+
   {% block body %}
 
 

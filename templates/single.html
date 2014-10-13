@@ -6,41 +6,34 @@
 
 {% block body %}
 
+
+
  <header class="rp">
    <div class="container">
      <div class="header-inner">
 
        <div class="col-xs-7">
          <h2>{{post.title}}</h2>
-         <p>{{post.excerpt | safe}}</p>
+         <p>{{post.excerpt | truncate(200) | safe}}</p>
        </div>
      </div> <!-- end of header-inner -->
    </div>
  </header>
+
+ <div id="navigation">
+   <div class="container">
+     <div class="col-xs-12">
+       {% include "snippets/navigation.html" %}
+     </div>
+   </div>
+ </div>
+
+
  <div class="container">
    <div class="col-xs-12 col-md-10 col-lg-7">
 
      <div id="content">
-       {% if user %}
-       <a id="readlater" href="javascript:void(0)"
-          class="btn btn-special">
-         <i class="fa fa-save"></i> <span>Read Later</span>
-       </a>
-       {% else %}
-       <a href="#loginModal" data-toggle="modal"
-          class="btn btn-special">
-         <i class="fa fa-save"></i> Read Later
-       </a>
-       {% endif %}
-       <a class="btn btn-special" type="submit">
-         <i class="fa fa-tag"></i> Menage Tags
-       </a>
-
-       <a class="btn btn-special" type="submit">
-         <i class="fa fa-gears"></i> Reading Options
-       </a>
-       <hr />
-
+       <h2>{{post.title}}</h2>
        {{post.content | safe}}
      </div>
    </div>
