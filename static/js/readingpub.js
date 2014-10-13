@@ -19,7 +19,7 @@ $(document).ready(function() {
 // used on base
 function login() {
     $("#errordata").hide();
-    var currenturl = $(location).attr("pathname");
+    var currenturl = $(location).attr("href");
     var username = $("#usernamelogin").val();
     var password = $("#passwordlogin").val();
     var remember_me = $("#rememberme").is(":checked");
@@ -54,7 +54,7 @@ function login() {
 
 function register() {
     $("#errordataregister").hide();
-    var currenturl = $(location).attr("pathname");
+    var currenturl = $(location).attr("href");
     var error = $("#errorregister");
     var email = $("#emailregister").val();
     var username = $("#usernameregister").val();

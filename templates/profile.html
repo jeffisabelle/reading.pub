@@ -31,6 +31,11 @@
    <div class="posts">
    {% for post in posts %}
      {% include "snippets/posts.html" %}
+   {% else %}
+   <div class="tcenter">
+     <h4>you haven't saved any documents yet</h4>
+   </div>
+
    {% endfor %}
    </div>
  </div> <!-- end of container -->
