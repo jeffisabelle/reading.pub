@@ -9,7 +9,7 @@ class User(Document):
     email = EmailField(required=True, unique=True, max_length=200)
     password = StringField(required=True, max_length=100)
     register_date = DateTimeField()
-    posts = ListField(EmbeddedDocumentField("Post"))
+    posts = ListField(ReferenceField("Post"))
 
     def is_authenticated(self):
         return True
@@ -39,3 +39,4 @@ class Post(Document):
     domain = StringField()
     content = StringField()
     excerpt = StringField()
+    post_type = StringField(default="web")

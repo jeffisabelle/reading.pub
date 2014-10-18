@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block headtag %}
+  {{ super() }}
+{% endblock %}
+
+{% block body %}
+<div class="page-wrap">
+
+ <header class="rp">
+   <div class="container">
+     <div class="header-inner">
+
+       <div class="col-xs-7">
+         <h2>PDF Document</h2>
+         <p>{{ url }}</p>
+       </div>
+     </div> <!-- end of header-inner -->
+   </div>
+ </header>
+
+ <div id="navigation">
+   <div class="container">
+     <div class="col-xs-12">
+       {% include "snippets/navigation.html" %}
+     </div>
+   </div>
+ </div>
+
+
+ <div class="container">
+   <div class="col-xs-12 col-md-10 col-lg-7">
+
+
+
+     <div class="panel">
+       <div class="panel-body">
+         <p>
+           PDF Document's cannot be parsed through reading.pub <br />
+           You can still save & tag these documents.
+         </p>
+         <hr />
+
+         <form role="form" action="/post/save/pdf" method="POST">
+           <div class="form-group">
+             <label for="titleInput">Title (Requirement)</label>
+             <input type="text" name="title"
+                    placeholder="Title of the Document"
+                    id="titleInput" class="form-control">
+           </div>
+
+           <div class="form-group">
+             <label for="thumbnailInput">Thumbnail (Optional)</label>
+             <input type="text" name="thumbnail"
+                    placeholder="Thumbnail image. Should be .gif, .jpg or .png"
+                    id="thumbnailInput" class="form-control">
+           </div>
+
+           <div class="form-group">
+             <input type="hidden" name="domain" placeholder="domain" value="{{domain}}"
+                    id="domainInput" class="form-control">
+           </div>
+
+           <div class="form-group">
+             <input type="hidden" name="url" placeholder="url" value="{{url}}"
+                    id="urlInput" class="form-control">
+           </div>
+
+           <button class="btn btn-special" type="submit">
+             <i class="fa fa-send"></i> Save
+           </button>
+
+         </form>
+
+
+       </div> <!-- panel-body -->
+     </div>   <!-- panel -->
+
+
+   </div>   <!-- end of col-xs-12 -->
+ </div>     <!-- end of container -->
+</div>      <!-- end of page-wrap -->
+
+{% block footer %}
+  {{ super() }}
+{% endblock %}
+
+
+{% block jsblock %}
+  {{ super() }}
+ <script type="text/javascript">
+
+
+
+ </script>
+
+{% endblock %} <!-- end of jsblock -->
+{% endblock %} <!-- end of body block -->

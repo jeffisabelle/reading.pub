@@ -9,11 +9,14 @@ from flask.ext.login import LoginManager, login_required
 from flask.ext.login import login_user, logout_user, current_user
 from flask.ext.assets import Environment, Bundle
 from datetime import datetime
+from urlparse import urlparse
 
 from utils import userutils
 from utils.readability import make_readable
 from utils.pyscrape.soup import LinkScrapper
 from models.models import User, Post
+
+
 
 
 app = Flask(__name__)
@@ -77,9 +80,17 @@ def parse():
 @app.route('/submit', methods=["GET"])
 def submit():
     url = request.args.get("url")
-    json_data = make_readable(url)
-    user = get_user()
-    return render_template('parsed.html', data=json_data, user=user)
+    if url.endswith(".pdf"):
+        user = get_user()
+        parsed_uri = urlparse(url)
+        domain = '{uri.netloc}'.format(uri=parsed_uri)
+        return render_template(
+            'unparsed.html', user=user, url=url, domain=domain
+        )
+    else:
+        json_data = make_readable(url)
+        user = get_user()
+        return render_template('parsed.html', data=json_data, user=user)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -237,8 +248,37 @@ def save_post():
     p.excerpt = json_data["excerpt"]
     p.domain = post_data["domain"]
     p.save()
+
+    author.posts.append(p)
+    author.save()
+
     return "ok"
 
+
+@app.route("/post/save/pdf", methods=["POST"])
+@login_required
+def save_post_pdf():
+    post_data = request.form
+    title = post_data.get("title")
+    slug = userutils.make_slug(title)
+    author = User.objects(username=current_user.username).first()
+
+    print post_data.get("domain")
+
+    if not title:
+        return "please provide a title"
+
+    p = Post(title=title, slug=slug)
+    p.saved_date = datetime.now()
+    p.thumbnail = post_data.get("thumbnail")
+    p.url = post_data.get("url")
+    p.author = author
+    p.content = ""
+    p.excerpt = ""
+    p.post_type = "pdf"
+    p.domain = post_data.get("domain")
+    p.save()
+    return redirect('/user/profile')
 
 if __name__ == '__main__':
     app.debug = settings.DEBUG
