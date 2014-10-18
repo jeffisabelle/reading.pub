@@ -13,10 +13,9 @@ from urlparse import urlparse
 
 from utils import userutils
 from utils.readability import make_readable
+from utils.timeutils import set_time_zones
 from utils.pyscrape.soup import LinkScrapper
 from models.models import User, Post
-
-
 
 
 app = Flask(__name__)
@@ -206,6 +205,7 @@ def logout():
 def profile():
     user = get_user()
     posts = Post.objects(author=user).order_by("-saved_date")
+    posts = set_time_zones(posts)
     return render_template('profile.html', user=user, posts=posts)
 
 

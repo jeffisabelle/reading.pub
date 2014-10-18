@@ -33,5 +33,5 @@ def set_time_zones(posts):
 
     posts_new = posts
     for p in posts_new:
-        p.publish_date = utc.localize(p.publish_date)
+        p.saved_date = utc.localize(p.saved_date)
     return posts_new
