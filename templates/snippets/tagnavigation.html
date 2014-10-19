@@ -1,0 +1,11 @@
+<div class="tags">
+  {% if freqs %}
+    {% for tag, freq in freqs %}
+    <a href="/user/tag/{{tag}}">
+      <div class="tag">
+        {{tag}}: x{{freq}}
+      </div>
+    </a>
+    {% endfor %}
+  {% endif %}
+</div>

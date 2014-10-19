@@ -5,6 +5,44 @@
 {% endblock %}
 
 {% block body %}
+
+<!-- edittag modal -->
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog"
+     tabindex="-1" id="edittagModal" class="modal fade" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+        <h4 class="modal-title">Add New Tag</h4>
+      </div>
+      <div class="modal-body">
+        <!-- login form starts here -->
+
+        <form role="form" action="/post/tag/add" method="POST" class="form-signin">
+          <div class="login-wrap">
+            <div id="titleSpan" style="text-align: center; margin: 10px;"></div>
+
+            <input type="hidden" id="idInput" name="id" value="" />
+            <input id="urlInputModal" name="tag" type="text" autofocus=""
+                   placeholder="write the tag here" class="form-control">
+            <div class="tcenter">
+              <button class="btn btn-special btn-modal" type="submit">
+                <i class="fa fa-plus"></i> Add Tag
+              </button>
+            </div>
+          </div> <!-- end of login-wrap -->
+
+
+        </form>
+        <!-- edittag form ends here -->
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- end of edittag modal -->
+
+
 <div class="page-wrap">
 
  <header class="rp">
@@ -28,9 +66,17 @@
  </div>
 
  <div class="container">
+   <div class="col-xs-12">
+     {% include "snippets/tagnavigation.html" %}
+   </div>
+
    <div class="posts">
-   {% for post in posts %}
-     {% include "snippets/posts.html" %}
+   {% for poststhree in posts|batch(3) %}
+   <div class="row">
+     {% for post in poststhree %}
+       {% include "snippets/posts.html" %}
+     {% endfor %}
+   </div>
    {% else %}
    <div class="tcenter">
      <h4>you haven't saved any documents yet</h4>

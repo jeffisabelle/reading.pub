@@ -1,15 +1,32 @@
-<div class="col-xs-4">
+<div class="col-sm-6 col-md-4">
   <div class="post">
-    {% if post.thumbnail %}
-    <div class="thumbnail"
-         style="background: url({{post.thumbnail}})
-                no-repeat scroll 50% 50% / cover transparent;">
+    <div class="thumb">
+      {% if post.thumbnail %}
+      <div class="thumbnail"
+           style="background: url({{post.thumbnail}})
+                  no-repeat scroll 50% 50% / cover transparent;">
+      </div>
+      {% else %}
+      <div class="thumbnail">
+        <div class="please"></div>
+      </div>
+      {% endif %}
+      <div class="thumbnail-hover">
+        <div class="add-tag">
+          <a href="javascript:void(0)" class="edittag btn btn-info"
+             data-id="{{post.id}}" data-title="{{post.title}}"
+             data-url="{{post.url}}">
+            <i class="fa fa-tag"></i> add tag</a>
+
+          <a href="javascript:void(0)" class="btn btn-info"
+             data-id="{{post.id}}" data-title="{{post.title}}"
+             data-url="{{post.url}}">
+            <i class="fa fa-share-alt"></i> share</a>
+        </div> <!-- end of add-tag -->
+
+      </div>
     </div>
-    {% else %}
-    <div class="thumbnail">
-      <div class="please"></div>
-    </div>
-    {% endif %}
+
 
     <div class="title">
       {% if post.post_type == "pdf" %}
@@ -23,9 +40,20 @@
       saved <time class="timeago" datetime="{{post.saved_date}}"></time>
     </div>
 
+    <div class="tags">
+      {% for tag in post.tags %}
+      <a href="/user/tag/{{tag}}">
+        <div class="tag">
+          {{tag}}
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+
     <div class="domain">
       ({{post.domain}})
     </div>
+
 
 
   </div> <!-- end of post -->

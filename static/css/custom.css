@@ -167,78 +167,133 @@ footer .text-center {
   -moz-box-shadow: 0 8px 10px -6px #ddd;
   box-shadow: 0 8px 10px -6px #ddd;
   /* padding: 10px; */
-  height: 350px;
+  height: auto;
   margin: 15px auto;
   position: relative;
 }
-/* line 179, ../sass/custom.scss */
-.posts .post .thumbnail {
+/* line 178, ../sass/custom.scss */
+.posts .post .thumb {
   width: 100%;
   height: 200px;
+  position: relative;
+  margin-bottom: 20px;
+}
+/* line 184, ../sass/custom.scss */
+.posts .post .thumb .thumbnail {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   border: none;
   border-radius: 0;
   padding: 0;
 }
-/* line 186, ../sass/custom.scss */
-.posts .post .thumbnail .please {
+/* line 195, ../sass/custom.scss */
+.posts .post .thumb .thumbnail .please {
   background-color: #aaa;
   width: 100%;
   height: 100%;
 }
-/* line 193, ../sass/custom.scss */
+/* line 202, ../sass/custom.scss */
+.posts .post .thumb .thumbnail-hover {
+  display: table-cell;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: #0c0c0c;
+  opacity: 0.9;
+  display: none;
+}
+/* line 215, ../sass/custom.scss */
+.posts .post .thumb .thumbnail-hover .add-tag {
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 200px;
+  height: 30px;
+  text-align: center;
+  font-variant: small-caps;
+}
+/* line 227, ../sass/custom.scss */
 .posts .post .title {
   padding: 0 10px;
   font-weight: 600;
 }
-/* line 196, ../sass/custom.scss */
+/* line 230, ../sass/custom.scss */
 .posts .post .title a {
   color: #444444;
   transition: all 0.3s ease;
 }
-/* line 200, ../sass/custom.scss */
+/* line 234, ../sass/custom.scss */
 .posts .post .title a:hover {
   color: #654bac;
 }
-/* line 206, ../sass/custom.scss */
+/* line 240, ../sass/custom.scss */
 .posts .post .time {
   padding: 0 10px;
 }
-/* line 210, ../sass/custom.scss */
+/* line 244, ../sass/custom.scss */
 .posts .post .domain {
   color: #444444;
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  right: 10px;
   display: block;
-  padding-top: 10px;
-  /* border-top: 1px solid lighten($primary-color, 30%); */
+  padding: 10px;
+}
+
+/* line 252, ../sass/custom.scss */
+.tags {
+  padding: 10px;
+  font-variant: small-caps;
+}
+/* line 256, ../sass/custom.scss */
+.tags .tag {
+  border: 1px solid #797979;
+  background-color: #fff;
+  padding: 3px 6px;
+  margin: 3px;
+  margin-left: 0;
+  display: inline-block;
+  color: #797979;
+  transition: all 0.3s ease;
+}
+/* line 266, ../sass/custom.scss */
+.tags .tag:hover {
+  background-color: #654bac;
+  color: #fafafa;
 }
 
 /* footer */
-/* line 225, ../sass/custom.scss */
+/* line 274, ../sass/custom.scss */
 .page-wrap {
   min-height: 100%;
   margin-bottom: -60px;
 }
 
-/* line 230, ../sass/custom.scss */
+/* line 279, ../sass/custom.scss */
 .page-wrap:after {
   content: "";
   display: block;
 }
 
-/* line 235, ../sass/custom.scss */
+/* line 284, ../sass/custom.scss */
 .page-wrap:after {
   /* .push must be the same height as footer */
   height: 60px;
 }
 
-/* line 241, ../sass/custom.scss */
+/* line 290, ../sass/custom.scss */
 .panel {
   margin: 30px auto;
 }
-/* line 244, ../sass/custom.scss */
+/* line 293, ../sass/custom.scss */
 .panel h3 {
   font-variant: small-caps;
   margin-bottom: 0;
@@ -246,28 +301,28 @@ footer .text-center {
 
 /* end of footer */
 /* modals */
-/* line 254, ../sass/custom.scss */
+/* line 303, ../sass/custom.scss */
 .modal-dialog {
   width: 400px;
 }
-/* line 257, ../sass/custom.scss */
+/* line 306, ../sass/custom.scss */
 .modal-dialog .form-signin {
   margin: auto;
 }
-/* line 261, ../sass/custom.scss */
+/* line 310, ../sass/custom.scss */
 .modal-dialog .modal-header {
   background-color: #654bac;
 }
 
 /* end of modals */
 /* generics */
-/* line 269, ../sass/custom.scss */
+/* line 318, ../sass/custom.scss */
 .tcenter {
   text-align: center;
   margin: auto;
 }
 
-/* line 275, ../sass/custom.scss */
+/* line 324, ../sass/custom.scss */
 ul li {
   font-size: 1.2em;
   line-height: 1.6em;
@@ -275,16 +330,16 @@ ul li {
   list-style: square;
 }
 
-/* line 283, ../sass/custom.scss */
+/* line 332, ../sass/custom.scss */
 .btn {
   /* icons inside buttos */
   /* primary color btn */
 }
-/* line 286, ../sass/custom.scss */
+/* line 335, ../sass/custom.scss */
 .btn i.fa {
   margin: auto 7px auto auto;
 }
-/* line 293, ../sass/custom.scss */
+/* line 342, ../sass/custom.scss */
 .btn.btn-special {
   background-color: #654bac;
   color: #eaeaea;
@@ -292,18 +347,18 @@ ul li {
   transition: all ease 0.3s;
   outline: 0;
 }
-/* line 300, ../sass/custom.scss */
+/* line 349, ../sass/custom.scss */
 .btn.btn-special.btn-modal {
   width: 100%;
   margin: 10px auto;
 }
-/* line 306, ../sass/custom.scss */
+/* line 355, ../sass/custom.scss */
 .btn.btn-special:hover {
   background-color: white;
   border: 1px solid #654bac;
   color: #444444;
 }
-/* line 312, ../sass/custom.scss */
+/* line 361, ../sass/custom.scss */
 .btn.btn-special:active {
   border: 1px solid #654bac;
 }

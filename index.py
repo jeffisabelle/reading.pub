@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import settings
 import json
+import operator
 
 from werkzeug.contrib.fixers import ProxyFix
 from flask import Flask, session
@@ -204,9 +205,36 @@ def logout():
 @app.route("/user/profile/")
 def profile():
     user = get_user()
+    unsorted_freqs = User.objects(
+        username=user.username
+    ).item_frequencies(field="tags")
+
+    freqs = sorted(
+        unsorted_freqs.items(), key=operator.itemgetter(1),
+        reverse=True
+    )
+
     posts = Post.objects(author=user).order_by("-saved_date")
     posts = set_time_zones(posts)
-    return render_template('profile.html', user=user, posts=posts)
+    return render_template('profile.html', user=user, posts=posts, freqs=freqs)
+
+
+@login_required
+@app.route("/user/tag/<string:tag>")
+def profile_tag(tag):
+    user = get_user()
+    unsorted_freqs = User.objects(
+        username=user.username
+    ).item_frequencies(field="tags")
+
+    freqs = sorted(
+        unsorted_freqs.items(), key=operator.itemgetter(1),
+        reverse=True
+    )
+
+    posts = Post.objects(author=user, tags=tag).order_by("-saved_date")
+    posts = set_time_zones(posts)
+    return render_template('profile.html', user=user, posts=posts, freqs=freqs)
 
 
 @app.route("/<string:seq>/<string:slug>/")
@@ -279,6 +307,33 @@ def save_post_pdf():
     p.domain = post_data.get("domain")
     p.save()
     return redirect('/user/profile')
+
+
+@app.route("/post/tag/add", methods=["POST"])
+@login_required
+def save_tag_post():
+    post_data = request.form
+    post_tag = post_data.get("tag")
+    post_tag = userutils.make_slug(post_tag)
+    post_id = post_data.get("id")
+    user = get_user()
+    post = Post.objects(id=post_id).first()
+
+    if post_tag not in post.tags:
+        post.tags.append(post_tag)
+        post.save()
+
+    if post_tag not in user.tags:
+        user.tags.append(post_tag)
+        user.save()
+
+    return redirect('/user/profile')
+
+
+@app.route("/post/highlight", methods=["POST"])
+@login_required
+def highlight_post():
+    pass
 
 if __name__ == '__main__':
     app.debug = settings.DEBUG

@@ -10,6 +10,7 @@ class User(Document):
     password = StringField(required=True, max_length=100)
     register_date = DateTimeField()
     posts = ListField(ReferenceField("Post"))
+    tags = ListField()
 
     def is_authenticated(self):
         return True
@@ -40,3 +41,4 @@ class Post(Document):
     content = StringField()
     excerpt = StringField()
     post_type = StringField(default="web")
+    tags = ListField()
