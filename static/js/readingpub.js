@@ -12,6 +12,22 @@ $(document).ready(function() {
         $(this).css("background-color", color);
     });
 
+
+    $(".edittag").click(function() {
+        var id = $(this).data("id");
+        var title = $(this).data("title");
+        var url = $(this).data("url");
+        $("#edittagModal").modal('toggle');
+        $("#titleSpan").text(title);
+        $("#idInput").val(id);
+    });
+
+
+    $('.thumb').hover( function() {
+        $(this).find('.thumbnail-hover').fadeIn(300);
+    }, function() {
+        $(this).find('.thumbnail-hover').fadeOut(100);
+    });
 });
 
 
