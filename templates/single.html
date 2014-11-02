@@ -6,6 +6,20 @@
 
 {% block body %}
 
+<div class="highlight-wrapper">
+  <div class="highlight">
+    <div class="buttons">
+      <a href="javascript:void(0)" onclick="highlightSelected();">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+    <div class="buttons">
+      <a href="">
+        <i class="fa fa-edit"></i>
+      </a>
+    </div>
+  </div>
+</div>
 
 <div class="page-wrap">
  <header class="rp">
@@ -34,7 +48,9 @@
 
      <div id="content">
        <h2>{{post.title}}</h2>
-       {{post.content | safe}}
+       <div class="content-data" data-id="{{post.id}}">
+         {{post.content | safe}}
+       </div>
      </div>
    </div>
  </div>
@@ -109,6 +125,8 @@
 
 
  </script>
+
+
 
 {% endblock %} <!-- end of jsblock -->
 {% endblock %} <!-- end of body block -->
