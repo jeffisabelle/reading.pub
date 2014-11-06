@@ -117,6 +117,7 @@ footer.rp {
     font-style: normal;
     line-height: 25px;
     color: #333;
+    margin-bottom: 50px;
 
     h1 {
         font-size: 52px;
@@ -163,6 +164,15 @@ footer.rp {
 
         p {
             margin: 0;
+        }
+    }
+
+    .originalarticle {
+        margin: 40px auto;
+        font-variant: small-caps;
+
+        .time {
+            display: inline-block;
         }
     }
 }
@@ -314,6 +324,7 @@ footer.rp {
     }
 }
 
+
 .highlighted {
     display: inline-block;
     background-color: $primary-color;
@@ -326,6 +337,22 @@ footer.rp {
         font-weight: 600;
     }
 }
+
+.note {
+    display: inline-block;
+    background-color: $primary-color;
+    color: $light-white;
+    padding: 2px 10px;
+    margin: 5px;
+    border-radius: 5px;
+    border: none;
+
+    a {
+        color: #fff;
+        font-weight: 600;
+    }
+}
+
 
 /* footer */
 .page-wrap {

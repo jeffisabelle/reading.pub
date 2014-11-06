@@ -29,8 +29,7 @@ js = Bundle(
     'js/jquery-1.8.3.min.js',
     'assets/jquery-ui/jquery-ui-1.10.1.custom.min.js',
     'js/respond.min.js', 'js/bootstrap.min.js',
-    'js/hover-dropdown.js', 'js/jquery.customSelect.min.js',
-    'js/jquery.ui.touch-punch.min.js', 'js/sliders.js',
+    'js/hover-dropdown.js', 'js/jquery.ui.touch-punch.min.js',
     'js/common-scripts.js', 'js/jquery.timeago.js',
     filters='jsmin', output='gen/packed.js'
 )
@@ -309,6 +308,20 @@ def save_post_pdf():
     return redirect('/user/profile')
 
 
+@app.route("/post/sync", methods=["POST"])
+@login_required
+def sync_post():
+    post_data = request.json
+    post_content = post_data.get("content")
+    post_id = post_data.get("postid")
+
+    p = Post.objects(id=post_id).first()
+    p.content = post_content
+    p.save()
+
+    return json.dumps({"status": "success"})
+
+
 @app.route("/post/tag/add", methods=["POST"])
 @login_required
 def save_tag_post():
@@ -322,8 +335,6 @@ def save_tag_post():
     if post_tag not in post.tags:
         post.tags.append(post_tag)
         post.save()
-
-    if post_tag not in user.tags:
         user.tags.append(post_tag)
         user.save()
 

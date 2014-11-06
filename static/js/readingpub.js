@@ -104,6 +104,46 @@ function highlightSelected() {
     });
 }
 
+
+function toggleNoteModal() {
+    var sel = window.getSelection();
+    selected_range = sel.getRangeAt(0).cloneRange();
+
+    $("#addNoteModal").modal("toggle");
+}
+
+function addNote() {
+    var sel = window.getSelection();
+
+    var note = $("#noteArea").val();
+    var username = $("#addNoteModal").data("username");
+
+    var div = $("<button/>", {
+        class: "note popovers",
+        "data-trigger": "focus",
+        "data-content": note,
+        "data-original-title": username + " says;",
+        "data-placement": "top",
+        "role": "button"
+    });
+    var fa = $("<i>", {class: "fa fa-comments-o"});
+    div.append(fa);
+
+    // get the dom node instead of $ object.
+    div = div[0];
+
+    // var range = sel.getRangeAt(0).cloneRange();
+    selected_range.collapse(false);
+    selected_range.insertNode(div);
+
+    // set popover again after inserting to dom
+    $('.popovers').popover();
+    syncData();
+    $("#addNoteModal").modal("toggle");
+}
+
+
+
 function syncData() {
     // send content to server replace post-content
     var html = $(".content-data").html();
