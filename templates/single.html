@@ -89,9 +89,30 @@
        <div class="content-data" data-id="{{post.id}}">
          {{post.content | safe}}
        </div>
-     </div>
+     </div> <!-- end of content -->
    </div>
+ </div> <!-- end of container -->
+
+
+   {% if related_posts %}
+   <div class="ayrac">
+     Related Articles
+   </div>
+   {% endif %}
+
+
+ <div class="container">
+   <div class="col-md-12">
+     <div class="posts">
+       {% for relation in related_posts %}
+       {% include "snippets/related_posts.html" %}
+       {% endfor %}
+     </div>
+
+   </div>
+
  </div>
+
 </div>
 
 {% block footer %}

@@ -40,7 +40,7 @@ header.rp p {
 }
 
 /* line 47, ../sass/custom.scss */
-footer {
+footer.rp {
   width: 100%;
   height: 60px;
   /* margin-top: 50px; */
@@ -48,7 +48,7 @@ footer {
   border-bottom: 4px solid #4b3a79;
 }
 /* line 54, ../sass/custom.scss */
-footer .text-center {
+footer.rp .text-center {
   line-height: 60px;
   text-align: center;
   color: white;
@@ -113,8 +113,9 @@ footer .text-center {
   font-style: normal;
   line-height: 25px;
   color: #333;
+  margin-bottom: 50px;
 }
-/* line 121, ../sass/custom.scss */
+/* line 122, ../sass/custom.scss */
 #content h1 {
   font-size: 52px;
   line-height: 60px;
@@ -122,45 +123,62 @@ footer .text-center {
   font-weight: 400;
   font-style: normal;
 }
-/* line 129, ../sass/custom.scss */
+/* line 130, ../sass/custom.scss */
 #content h2 {
   font-size: 36px;
   line-height: 46px;
   margin: 50px 0px 5px 0px;
 }
-/* line 136, ../sass/custom.scss */
+/* line 137, ../sass/custom.scss */
 #content p {
   margin: 0px 0px 25px 0px;
   text-transform: inherit;
   font-size: 16px;
 }
-/* line 142, ../sass/custom.scss */
+/* line 143, ../sass/custom.scss */
 #content ul {
   margin: 10px 20px;
   padding: 10px 20px;
 }
-/* line 146, ../sass/custom.scss */
+/* line 147, ../sass/custom.scss */
 #content ul li {
   list-style: disc;
 }
-/* line 151, ../sass/custom.scss */
+/* line 152, ../sass/custom.scss */
 #content strong {
   margin-top: 30px;
 }
-/* line 155, ../sass/custom.scss */
+/* line 156, ../sass/custom.scss */
 #content img {
   max-width: 100%;
   margin: 20px auto;
   display: block;
 }
+/* line 162, ../sass/custom.scss */
+#content blockquote {
+  border-left: 5px solid #654bac;
+}
+/* line 165, ../sass/custom.scss */
+#content blockquote p {
+  margin: 0;
+}
+/* line 170, ../sass/custom.scss */
+#content .originalarticle {
+  margin: 40px auto;
+  font-variant: small-caps;
+}
+/* line 174, ../sass/custom.scss */
+#content .originalarticle .time {
+  display: inline-block;
+}
 
-/* line 163, ../sass/custom.scss */
+/* line 180, ../sass/custom.scss */
 .posts {
   float: left;
   margin: 20px auto;
   width: 100%;
 }
-/* line 168, ../sass/custom.scss */
+/* line 185, ../sass/custom.scss */
 .posts .post {
   /* background-color: lighten($primary-color, 50%); */
   -webkit-box-shadow: 0 8px 10px -6px #ddd;
@@ -171,14 +189,14 @@ footer .text-center {
   margin: 15px auto;
   position: relative;
 }
-/* line 178, ../sass/custom.scss */
+/* line 195, ../sass/custom.scss */
 .posts .post .thumb {
   width: 100%;
   height: 200px;
   position: relative;
   margin-bottom: 20px;
 }
-/* line 184, ../sass/custom.scss */
+/* line 201, ../sass/custom.scss */
 .posts .post .thumb .thumbnail {
   position: absolute;
   top: 0;
@@ -190,13 +208,13 @@ footer .text-center {
   border-radius: 0;
   padding: 0;
 }
-/* line 195, ../sass/custom.scss */
+/* line 212, ../sass/custom.scss */
 .posts .post .thumb .thumbnail .please {
   background-color: #aaa;
   width: 100%;
   height: 100%;
 }
-/* line 202, ../sass/custom.scss */
+/* line 219, ../sass/custom.scss */
 .posts .post .thumb .thumbnail-hover {
   display: table-cell;
   position: absolute;
@@ -210,7 +228,7 @@ footer .text-center {
   opacity: 0.9;
   display: none;
 }
-/* line 215, ../sass/custom.scss */
+/* line 232, ../sass/custom.scss */
 .posts .post .thumb .thumbnail-hover .add-tag {
   margin: auto;
   position: absolute;
@@ -223,37 +241,37 @@ footer .text-center {
   text-align: center;
   font-variant: small-caps;
 }
-/* line 227, ../sass/custom.scss */
+/* line 244, ../sass/custom.scss */
 .posts .post .title {
   padding: 0 10px;
   font-weight: 600;
 }
-/* line 230, ../sass/custom.scss */
+/* line 247, ../sass/custom.scss */
 .posts .post .title a {
   color: #444444;
   transition: all 0.3s ease;
 }
-/* line 234, ../sass/custom.scss */
+/* line 251, ../sass/custom.scss */
 .posts .post .title a:hover {
   color: #654bac;
 }
-/* line 240, ../sass/custom.scss */
+/* line 257, ../sass/custom.scss */
 .posts .post .time {
   padding: 0 10px;
 }
-/* line 244, ../sass/custom.scss */
+/* line 261, ../sass/custom.scss */
 .posts .post .domain {
   color: #444444;
   display: block;
   padding: 10px;
 }
 
-/* line 252, ../sass/custom.scss */
+/* line 269, ../sass/custom.scss */
 .tags {
   padding: 10px;
   font-variant: small-caps;
 }
-/* line 256, ../sass/custom.scss */
+/* line 273, ../sass/custom.scss */
 .tags .tag {
   border: 1px solid #797979;
   background-color: #fff;
@@ -264,36 +282,114 @@ footer .text-center {
   color: #797979;
   transition: all 0.3s ease;
 }
-/* line 266, ../sass/custom.scss */
+/* line 283, ../sass/custom.scss */
 .tags .tag:hover {
   background-color: #654bac;
   color: #fafafa;
 }
 
+/* line 290, ../sass/custom.scss */
+.highlight-wrapper {
+  position: absolute;
+  z-index: 2;
+  display: none;
+}
+/* line 295, ../sass/custom.scss */
+.highlight-wrapper .highlight {
+  position: absolute;
+  z-index: 3;
+  border: 1px solid #797979;
+  border-radius: 5px;
+  background-color: #444444;
+  color: #fafafa;
+  display: block;
+  margin: auto;
+  width: 100px;
+  left: 0;
+  right: 0;
+  top: -50px;
+}
+/* line 309, ../sass/custom.scss */
+.highlight-wrapper .highlight .buttons {
+  width: 45%;
+  text-align: center;
+  display: inline-block;
+}
+/* line 315, ../sass/custom.scss */
+.highlight-wrapper .highlight .buttons a {
+  color: #fafafa;
+}
+/* line 316, ../sass/custom.scss */
+.highlight-wrapper .highlight .buttons a i {
+  padding: 10px;
+  font-size: 1.4em;
+}
+
+/* line 328, ../sass/custom.scss */
+.highlighted {
+  display: inline-block;
+  background-color: #654bac;
+  color: #fafafa;
+  padding: 10px;
+  border-radius: 5px;
+}
+/* line 335, ../sass/custom.scss */
+.highlighted a {
+  color: #fff;
+  font-weight: 600;
+}
+
+/* line 341, ../sass/custom.scss */
+.note {
+  display: inline-block;
+  background-color: #654bac;
+  color: #fafafa;
+  padding: 2px 10px;
+  margin: 5px;
+  border-radius: 5px;
+  border: none;
+}
+/* line 350, ../sass/custom.scss */
+.note a {
+  color: #fff;
+  font-weight: 600;
+}
+
+/* line 356, ../sass/custom.scss */
+.ayrac {
+  background-color: #654bac;
+  padding: 20px 0;
+  text-align: center;
+  color: #eaeaea;
+  font-variant: small-caps;
+  font-weight: 600;
+  margin-top: 30px;
+}
+
 /* footer */
-/* line 274, ../sass/custom.scss */
+/* line 368, ../sass/custom.scss */
 .page-wrap {
   min-height: 100%;
   margin-bottom: -60px;
 }
 
-/* line 279, ../sass/custom.scss */
+/* line 373, ../sass/custom.scss */
 .page-wrap:after {
   content: "";
   display: block;
 }
 
-/* line 284, ../sass/custom.scss */
+/* line 378, ../sass/custom.scss */
 .page-wrap:after {
   /* .push must be the same height as footer */
   height: 60px;
 }
 
-/* line 290, ../sass/custom.scss */
+/* line 384, ../sass/custom.scss */
 .panel {
   margin: 30px auto;
 }
-/* line 293, ../sass/custom.scss */
+/* line 387, ../sass/custom.scss */
 .panel h3 {
   font-variant: small-caps;
   margin-bottom: 0;
@@ -301,45 +397,45 @@ footer .text-center {
 
 /* end of footer */
 /* modals */
-/* line 303, ../sass/custom.scss */
+/* line 397, ../sass/custom.scss */
 .modal-dialog {
   width: 400px;
 }
-/* line 306, ../sass/custom.scss */
+/* line 400, ../sass/custom.scss */
 .modal-dialog .form-signin {
   margin: auto;
 }
-/* line 310, ../sass/custom.scss */
+/* line 404, ../sass/custom.scss */
 .modal-dialog .modal-header {
   background-color: #654bac;
 }
 
 /* end of modals */
 /* generics */
-/* line 318, ../sass/custom.scss */
+/* line 412, ../sass/custom.scss */
 .tcenter {
   text-align: center;
   margin: auto;
 }
 
-/* line 324, ../sass/custom.scss */
+/* line 418, ../sass/custom.scss */
 ul li {
-  font-size: 1.2em;
+  font-size: 1em;
   line-height: 1.6em;
   margin-left: 20px;
   list-style: square;
 }
 
-/* line 332, ../sass/custom.scss */
+/* line 426, ../sass/custom.scss */
 .btn {
   /* icons inside buttos */
   /* primary color btn */
 }
-/* line 335, ../sass/custom.scss */
+/* line 429, ../sass/custom.scss */
 .btn i.fa {
-  margin: auto 7px auto auto;
+  margin: 5px;
 }
-/* line 342, ../sass/custom.scss */
+/* line 436, ../sass/custom.scss */
 .btn.btn-special {
   background-color: #654bac;
   color: #eaeaea;
@@ -347,18 +443,18 @@ ul li {
   transition: all ease 0.3s;
   outline: 0;
 }
-/* line 349, ../sass/custom.scss */
+/* line 443, ../sass/custom.scss */
 .btn.btn-special.btn-modal {
   width: 100%;
   margin: 10px auto;
 }
-/* line 355, ../sass/custom.scss */
+/* line 449, ../sass/custom.scss */
 .btn.btn-special:hover {
   background-color: white;
   border: 1px solid #654bac;
   color: #444444;
 }
-/* line 361, ../sass/custom.scss */
+/* line 455, ../sass/custom.scss */
 .btn.btn-special:active {
   border: 1px solid #654bac;
 }

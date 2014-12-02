@@ -16,8 +16,14 @@ from utils import userutils
 from utils.readability import make_readable
 from utils.timeutils import set_time_zones
 from utils.pyscrape.soup import LinkScrapper
-from models.models import User, Post
+from utils.related.cosine import insert_new_relation, after_tagging_calculation
+from models.models import User, Post, Relation
 
+from redis import Redis
+from rq import Queue
+
+conn = Redis()
+q = Queue('rpub', connection=conn)
 
 app = Flask(__name__)
 assets = Environment(app)
@@ -241,7 +247,12 @@ def single_post(seq, slug):
     seq = int(seq)
     user = get_user()
     post = Post.objects(seq=seq).first()
-    return render_template('single.html', user=user, post=post)
+    related_posts = Relation.objects(post1=post).order_by("-similarity")[:3]
+
+    return render_template(
+        'single.html', user=user, post=post,
+        related_posts=related_posts
+    )
 
 
 @app.route("/post/scrape", methods=["POST"])
@@ -253,6 +264,24 @@ def scrape_link():
     data["now"] = unicode(datetime.now())
 
     return json.dumps(data)
+
+
+@app.route("/post/delete", methods=["POST"])
+@login_required
+def delete_post():
+    post_data = json.loads(request.data)
+    post_id = post_data["postId"]
+
+    post = Post.objects(id=post_id).first()
+    author = User.objects(username=current_user.username).first()
+    if post.author != author:
+        return json.dumps({"status": "not-allowed"})
+
+    Relation.objects(post1=post).delete()
+    Relation.objects(post2=post).delete()
+    Post.objects(id=post_id).delete()
+
+    return json.dumps({"status": "success"})
 
 
 @app.route("/post/save", methods=["POST"])
@@ -275,6 +304,8 @@ def save_post():
     p.excerpt = json_data["excerpt"]
     p.domain = post_data["domain"]
     p.save()
+
+    q.enqueue(insert_new_relation, p)
 
     author.posts.append(p)
     author.save()
@@ -337,6 +368,8 @@ def save_tag_post():
         post.save()
         user.tags.append(post_tag)
         user.save()
+
+    q.enqueue(after_tagging_calculation, post)
 
     return redirect('/user/profile')
 

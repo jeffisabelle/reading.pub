@@ -22,6 +22,32 @@ $(document).ready(function() {
         $("#idInput").val(id);
     });
 
+    $(".deletepost").click(function() {
+        var id = $(this).data("id");
+        var currenturl = $(location).attr("href");
+
+        var data = {
+            "postId": id
+        }
+
+        $.ajax({
+            type: "POST",
+            url : "/post/delete",
+            data: JSON.stringify(data, null, '\t'),
+            contentType: 'application/json;charset=UTF-8',
+            success: function(result) {
+                var res = JSON.parse(result);
+                if(res.status == "success") {
+                    window.location.href = currenturl;
+                }
+            },
+            error: function(result) {
+                console.log(result);
+            }
+        });
+
+    });
+
 
     $('.thumb').hover( function() {
         $(this).find('.thumbnail-hover').fadeIn(300);
