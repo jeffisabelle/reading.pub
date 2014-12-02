@@ -1,0 +1,31 @@
+<div class="col-sm-6 col-md-4">
+  <div class="post">
+    <a href="/{{relation.post2.seq}}/{{relation.post2.slug}}">
+    <div class="thumb">
+      {% if relation.post2.thumbnail %}
+      <div class="thumbnail"
+           style="background: url({{relation.post2.thumbnail}})
+                  no-repeat scroll 50% 50% / cover transparent;">
+      </div>
+      {% else %}
+      <div class="thumbnail">
+        <div class="please"></div>
+      </div>
+      {% endif %}
+    </div>
+    </a>
+
+    <div class="title">
+      {% if relation.post2.post_type == "pdf" %}
+      <a href="{{relation.post2.url}}">{{relation.post2.title | truncate(70)}}</a>
+      {% else %}
+      <a href="/{{relation.post2.seq}}/{{relation.post2.slug}}">{{relation.post2.title | truncate(70)}}</a>
+      {% endif %}
+    </div>
+
+    <div class="domain">
+      ({{relation.post2.domain}})
+    </div>
+
+  </div> <!-- end of post -->
+</div>

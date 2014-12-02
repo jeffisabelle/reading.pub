@@ -42,3 +42,9 @@ class Post(Document):
     excerpt = StringField()
     post_type = StringField(default="web")
     tags = ListField()
+
+
+class Relation(Document):
+    post1 = ReferenceField(Post)
+    post2 = ReferenceField(Post)
+    similarity = FloatField(default=0)
