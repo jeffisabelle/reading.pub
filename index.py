@@ -13,6 +13,7 @@ from datetime import datetime
 from urlparse import urlparse
 
 from utils import userutils
+from utils.mail import mailutils
 from utils.readability import make_readable
 from utils.timeutils import set_time_zones
 from utils.pyscrape.soup import LinkScrapper
@@ -225,7 +226,7 @@ def profile():
 
 
 @login_required
-@app.route("/user/tag/<string:tag>")
+@app.route("/user/tag/<string:tag>/")
 def profile_tag(tag):
     user = get_user()
     unsorted_freqs = User.objects(
@@ -239,7 +240,10 @@ def profile_tag(tag):
 
     posts = Post.objects(author=user, tags=tag).order_by("-saved_date")
     posts = set_time_zones(posts)
-    return render_template('profile.html', user=user, posts=posts, freqs=freqs)
+    return render_template(
+        'tag.html', user=user,
+        posts=posts, freqs=freqs, tag=tag
+    )
 
 
 @app.route("/<string:seq>/<string:slug>/")
@@ -374,10 +378,54 @@ def save_tag_post():
     return redirect('/user/profile')
 
 
+@app.route("/post/note/add", methods=["POST"])
+@login_required
+def add_note_to_post():
+    post_data = request.form
+    post_note = post_data.get("note")
+    post_id = post_data.get("id")
+    post = Post.objects(id=post_id).first()
+    post.note = post_note
+    post.save()
+
+    return redirect('/user/profile')
+
+
 @app.route("/post/highlight", methods=["POST"])
 @login_required
 def highlight_post():
     pass
+
+
+@app.route("/post/share/", methods=["POST"])
+@login_required
+def share_post():
+    post_data = request.form
+    post_id = post_data.get("id", "")
+    recepients = post_data.get("recepients", "")  # this is still text
+    username = current_user.username
+    post = Post.objects(id=post_id).first()
+
+    mmodule = mailutils.MailModule(username, recepients)
+    mmodule.share_post(post)
+
+    return redirect("/user/profile")
+
+
+@app.route("/post/share/<string:tag>/", methods=["POST"])
+@login_required
+def share_tag(tag):
+    post_data = request.form
+    recepients = post_data.get("recepients", "")
+    username = current_user.username
+    user = get_user()
+
+    posts = Post.objects(author=user, tags=tag).order_by("-saved_date")
+    if posts:
+        mmodule = mailutils.MailModule(username, recepients)
+        mmodule.share_tag(tag, posts)
+
+    return redirect("/user/profile")
 
 if __name__ == '__main__':
     app.debug = settings.DEBUG

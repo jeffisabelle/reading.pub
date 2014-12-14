@@ -1,0 +1,224 @@
+{% extends "base.html" %}
+
+{% block headtag %}
+  {{ super() }}
+{% endblock %}
+
+{% block body %}
+
+<!-- edittag modal -->
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog"
+     tabindex="-1" id="edittagModal" class="modal fade" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+        <h4 class="modal-title">Add New Tag</h4>
+      </div>
+      <div class="modal-body">
+        <!-- login form starts here -->
+
+        <form role="form" action="/post/tag/add" method="POST" class="form-signin">
+          <div class="login-wrap">
+            <div id="titleSpan" style="text-align: center; margin: 10px;"></div>
+
+            <input type="hidden" id="idInput" name="id" value="" />
+            <input id="urlInputModal" name="tag" type="text" autofocus=""
+                   placeholder="write the tag here" class="form-control">
+            <div class="tcenter">
+              <button class="btn btn-special btn-modal" type="submit">
+                <i class="fa fa-plus"></i> Add Tag
+              </button>
+            </div>
+          </div> <!-- end of login-wrap -->
+
+
+        </form>
+        <!-- edittag form ends here -->
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- end of edittag modal -->
+
+
+
+<!-- takenote modal -->
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog"
+     tabindex="-1" id="takenoteModal" class="modal fade" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+        <h4 class="modal-title">Take a Note</h4>
+      </div>
+      <div class="modal-body">
+        <!-- login form starts here -->
+
+        <form role="form" action="/post/note/add" method="POST" class="form-signin">
+          <div class="login-wrap">
+            <div id="titleSpan" style="text-align: center; margin: 10px;"></div>
+
+            <input type="hidden" id="idInputNote" name="id" value="" />
+            <input id="noteInputModal" name="note" type="text" autofocus=""
+                   placeholder="write your note to here" class="form-control">
+            <div class="tcenter">
+              <button class="btn btn-special btn-modal" type="submit">
+                <i class="fa fa-plus"></i> Take Your Note
+              </button>
+            </div>
+          </div> <!-- end of login-wrap -->
+
+
+        </form>
+        <!-- takenote form ends here -->
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- end of takenote modal -->
+
+
+<!-- sharesingle modal -->
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog"
+     tabindex="-1" id="sharesingleModal" class="modal fade" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+        <h4 class="modal-title">Share With E-Mail</h4>
+      </div>
+      <div class="modal-body">
+        <!-- login form starts here -->
+
+        <form role="form" action="/post/share/" method="POST" class="form-signin">
+          <div class="login-wrap">
+            <div id="titleSpan" style="text-align: center; margin: 10px;"></div>
+
+            <input type="hidden" id="idInputShare" name="id" value="" />
+            <textarea type="text" placeholder="Mail Addresses - Line by line"
+                      id="recepients" name="recepients" class="form-control"></textarea>
+
+            <div class="tcenter">
+              <button class="btn btn-special btn-modal" type="submit">
+                <i class="fa fa-plus"></i> Share
+              </button>
+            </div>
+          </div> <!-- end of login-wrap -->
+
+
+        </form>
+        <!-- sharesingle form ends here -->
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- end of sharesingle modal -->
+
+
+<!-- sharetag modal -->
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog"
+     tabindex="-1" id="sharetagModal" class="modal fade" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+        <h4 class="modal-title">Share With E-Mail</h4>
+      </div>
+      <div class="modal-body">
+        <!-- login form starts here -->
+
+        <form role="form" action="/post/share/{{tag}}/" method="POST" class="form-signin">
+          <div class="login-wrap">
+            <div id="titleSpan" style="text-align: center; margin: 10px;"></div>
+
+            <input type="hidden" id="idInputShare" name="id" value="" />
+            <textarea type="text" placeholder="Mail Addresses - Line by line"
+                      id="recepients" name="recepients" class="form-control"></textarea>
+
+            <div class="tcenter">
+              <button class="btn btn-special btn-modal" type="submit">
+                <i class="fa fa-plus"></i> Share
+              </button>
+            </div>
+          </div> <!-- end of login-wrap -->
+
+
+        </form>
+        <!-- sharetag form ends here -->
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- end of sharetag modal -->
+
+
+<div class="page-wrap">
+
+ <header class="rp">
+   <div class="container">
+     <div class="header-inner">
+
+       <div class="col-xs-12">
+         <h2>reading.pub</h2>
+         <p>read with pleasure</p>
+       </div>
+     </div> <!-- end of header-inner -->
+   </div>
+ </header>
+
+ <div id="navigation">
+   <div class="container">
+     <div class="col-xs-12">
+       {% include "snippets/navigation.html" %}
+     </div>
+   </div>
+ </div>
+
+ <div class="container">
+   <div class="col-xs-12">
+     {% include "snippets/tagnavigation.html" %}
+     <hr />
+   </div>
+
+
+   <div class="col-xs-12 col-lg-6 col-lg-offset-3">
+     <div class="alert alert-info fade in">
+       <button data-dismiss="alert" class="close close-sm" type="button">
+         <i class="fa fa-times"></i>
+       </button>
+       <a href="javascript:void(0)" class="sharetag"><strong>Heads up!</strong> you can share the following posts with email!</a>
+     </div>
+   </div>
+
+
+   <div class="posts">
+   {% for poststhree in posts|batch(3) %}
+   <div class="row">
+     {% for post in poststhree %}
+       {% include "snippets/posts.html" %}
+     {% endfor %}
+   </div>
+   {% else %}
+   <div class="tcenter">
+     <h4>you haven't saved any documents yet</h4>
+   </div>
+
+   {% endfor %}
+   </div>
+ </div> <!-- end of container -->
+
+</div> <!-- end of page-wrap -->
+{% block footer %}
+  {{ super() }}
+{% endblock %}
+
+
+{% block jsblock %}
+  {{ super() }}
+{% endblock %} <!-- end of jsblock -->
+{% endblock %} <!-- end of body block -->
