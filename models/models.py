@@ -42,6 +42,7 @@ class Post(Document):
     excerpt = StringField()
     post_type = StringField(default="web")
     tags = ListField()
+    note = StringField()
 
 
 class Relation(Document):
