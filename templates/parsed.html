@@ -11,7 +11,7 @@
    <div class="container">
      <div class="header-inner">
 
-       <div class="col-xs-7">
+       <div class="col-xs-7 left">
          <h2>{{data.title}}</h2>
          <p>{{data.excerpt | safe}}</p>
        </div>
@@ -46,13 +46,7 @@
          <i class="fa fa-save"></i> Read Later
        </a>
        {% endif %}
-       <a class="btn btn-special" type="submit">
-         <i class="fa fa-tag"></i> Menage Tags
-       </a>
 
-       <a class="btn btn-special" type="submit">
-         <i class="fa fa-gears"></i> Reading Options
-       </a>
        <hr />
 
        {{data.content | safe}}

@@ -22,6 +22,34 @@ $(document).ready(function() {
         $("#idInput").val(id);
     });
 
+    $(".takenote").click(function() {
+        var id = $(this).data("id");
+        var title = $(this).data("title");
+        var url = $(this).data("url");
+        $("#takenoteModal").modal('toggle');
+        $("#titleSpan").text(title);
+        $("#idInputNote").val(id);
+    });
+
+
+    $(".sharesingle").click(function() {
+        var id = $(this).data("id");
+        var title = $(this).data("title");
+        var url = $(this).data("url");
+        $("#sharesingleModal").modal('toggle');
+        $("#titleSpan").text(title);
+        $("#idInputShare").val(id);
+    });
+
+    $(".sharetag").click(function() {
+        var id = $(this).data("id");
+        var title = $(this).data("title");
+        var url = $(this).data("url");
+        $("#sharetagModal").modal('toggle');
+        $("#titleSpan").text(title);
+        $("#idInputShare").val(id);
+    });
+
     $(".deletepost").click(function() {
         var id = $(this).data("id");
         var currenturl = $(location).attr("href");
